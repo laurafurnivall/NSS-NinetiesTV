@@ -160,32 +160,32 @@ namespace NinetiesTV
         // 19. Return the number of crime shows with an IMDB rating greater than 7.0.
         static int GoodCrimeShows(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.Where(s => s.Genres.Contains("Crime")).Where(s => s.ImdbRating >= 7).Count();
         }
 
         // 20. Return the first show that ran for more than 10 years 
-        //     with an IMDB rating of less than 8.0 ordered alphabetically.
+        //     with an IMDB rating of greater than 8.0 ordered alphabetically.
         static Show FirstLongRunningTopRated(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderBy(s => s.Name).Where(s => s.ImdbRating > 8).Where(s => (s.EndYear - s.StartYear) > 10).First();
         }
 
         // 21. Return the show with the most words in the name.
         static Show WordieastName(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return shows.OrderByDescending(s => s.Name.Split(' ').Sum(words => words.Split().Length)).First();
         }
 
         // 22. Return the names of all shows as a single string seperated by a comma and a space.
         static string AllNamesWithCommas(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return string.Join(", ", shows.Select(s => s.Name));
         }
 
         // 23. Do the same as above, but put the word "and" between the second-to-last and last show name.
         static string AllNamesWithCommasPlsAnd(List<Show> shows)
         {
-            throw new NotImplementedException();
+            return string.Join(", ", shows.Select(s => s.Name).Take(shows.Count - 2)) + ", " + string.Join(", and ", shows.Select(s => s.Name).Skip(shows.Count - 2));
         }
 
 
